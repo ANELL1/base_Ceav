@@ -58,6 +58,7 @@ type Mutation {
     updatePuesto(data:[String]!):updatePuesto
     signupDataFechanotificaciones(data:[String]!):signupDataFechanotificaciones
     updateNivel(data:[String]!):sigupCatNiveles
+    updatefechasNotificaciones(data:[String]!):updatefechasNotificaciones
     }
 
 type Query{
@@ -116,7 +117,30 @@ getTablaNivel(data:[String]!):[getTablaPuestoAndNivel]
 getTablaEstados(data:[String]!):[getTablaEstados]
 getTablaDataEmpleadoUser(data:[String]!):[getTablaDataEmpleadoUser]
 getTablalistaNivel(data:[String]!):[getTablalistaNivel]
+getTablaFechaNotificaciones(data:[String]!):[getTablaFechaNotificaciones]
 } 
+ type updatefechasNotificaciones{
+    id_fecha:String,
+    fechaAlta:String,
+    fechaBaja:String,
+    fechaNotificacionAlta:String,
+    fechaNotificacionBaja:String,
+    numEmpleado:String,
+    message:String
+
+ } 
+    type getTablaFechaNotificaciones{
+    id_empleado:String,
+    nombre:String,
+    apellidos:String,
+    id_fecha:String,
+    fechaAlta:String,
+    fechaBaja:String,
+    fechaNotificacionAlta:String,
+    fechaNotificacionBaja:String,
+    numEmpleado:String,
+    message:String
+    }
 
 type getTablalistaNivel{
     id:String,

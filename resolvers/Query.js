@@ -83,9 +83,15 @@ const getTablalistaNivel =  (_ , data) =>{
     var variable = cadena.split(",")
 return actions.getTablalistaNivel(variable)
 }
+const getTablaFechaNotificaciones =  (_ , data) =>{
+    var cadena= data.data[0]
+    var variable = cadena.split(",")
+return actions.getTablaFechaNotificaciones(variable)
+}
 
 
 module.exports={ 
+    getTablaFechaNotificaciones,
     getTablalistaNivel,
     getTablaDataEmpleadoUser,
     getTablaEstados,

@@ -87,8 +87,14 @@ const actions = require('../actions/userActions')
         var variable = cadena.split(",")
     return actions.updateNivel(variable)
     }
+    const updatefechasNotificaciones =  (_ , data) =>{
+        var cadena= data.data[0]
+        var variable = cadena.split(",")
+    return actions.updatefechasNotificaciones(variable)
+    }
 
 module.exports={
+    updatefechasNotificaciones,
     updateNivel,
     signupDataFechanotificaciones,
     updatePuesto,

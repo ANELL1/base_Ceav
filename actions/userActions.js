@@ -376,8 +376,25 @@ const getTablaDataEmpleadoUser = ( data)  => {
         resolve({message:"actualizacion exitosa"})
         })
     }
+    const getTablaFechaNotificaciones = ( data)  => {
+        return new Promise((resolve,reject)=>{
+            client.query(`SELECT * FROM dataempleados INNER JOIN datafechasnotificaciones  on dataempleados.numEmpleado = datafechasnotificaciones.numEmpleado`,function(err,result,field){
+                var string = JSON.stringify(result)
+                var resultados =  JSON.parse(string)
+                resolve(resultados)
+            }) 
+        })
+    }
+    const updatefechasNotificaciones = ( data)  => {
+        return new Promise((resolve,reject)=>{
+            client.query(`update datafechasnotificaciones set fechaAlta ='${data[1]}',fechaBaja ='${data[2]}',fechaNotificacionAlta ='${data[3]}',fechaNotificacionBaja ='${data[4]}' where id_fecha='${data[0]}'`) 
+            resolve({message:"actualizacion exitosa"})
+            })
+        }
 
 module.exports={ 
+    getTablaFechaNotificaciones,
+    updatefechasNotificaciones,
     getTablalistaNivel,
     getTablaDataEmpleadoUser,
     updateNivel,
