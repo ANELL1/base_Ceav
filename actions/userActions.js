@@ -137,6 +137,7 @@ const sigUpEmpleado = (data) => {
             
         })   
         } 
+
   const getTablaDataEmpleado = ( data)  => {
     return new Promise((resolve,reject)=>{
         client.query(`SELECT *FROM dataempleados 
@@ -145,7 +146,8 @@ const sigUpEmpleado = (data) => {
         INNER JOIN catarea on dataempleados.fk_area = catarea.id_area 
         INNER JOIN catpuesto on dataempleados.fk_puesto = catpuesto.id_puesto 
         INNER JOIN catniveles on dataempleados.fk_nivel = catniveles.id 
-        INNER JOIN catpersonal on dataempleados.fk_personal = catpersonal.id_personal         
+        INNER JOIN catpersonal on dataempleados.fk_personal = catpersonal.id_personal 
+        INNER JOIN catextensiones on dataempleados.fk_extensiones = catextensiones.id_extension        
         `,function(err,result,field){
             var string = JSON.stringify(result)
             var resultados =  JSON.parse(string)
@@ -195,10 +197,12 @@ const getTablaDataEmpleadoUser = ( data)  => {
             
         })
     }
-
     const updateEmpleados = ( data)  => {
+        // console.log("nombre=",data[1],"apellidos=",data[2],"curp=",data[3],"rfc=",data[4],"correo=",data[5],"numEmpleado=",data[6],"telefono=",data[7]
+        // ,"statusEmpleado=",data[8],"departamento=",data[9],"fk_oficinas=",data[10],"fk_area=",data[11],"fk_puesto=",data[12],"fk_nivel=",data[13],"fk_personal=",data[14],"fk_extensiones=",data[15],"id_empleado=",data[0] )
         return new Promise((resolve,reject)=>{
-                client.query(`update dataempleados set  nombre='${data[1]}',apellidos='${data[2]}',curp='${data[3]}',rfc='${data[4]}',correo='${data[5]}',numEmpleado='${data[6]}',telefono='${data[7]}',ext='${data[8]}',statusEmpleado='${data[9]}',departamento='${data[10]}',fk_oficinas='${data[11]}',fk_area='${data[12]}',fk_puesto='${data[13]}',fk_nivel='${data[14]}',fk_personal='${data[15]}' where id_empleado='${data[0]}'`) 
+                client.query(`update dataempleados set nombre='${data[1]}',apellidos='${data[2]}',curp='${data[3]}',rfc='${data[4]}',correo='${data[5]}',numEmpleado='${data[6]}',telefono='${data[7]}'
+                ,statusEmpleado='${data[8]}',departamento='${data[9]}',fk_oficinas='${data[10]}',fk_area='${data[11]}',fk_puesto='${data[12]}',fk_nivel='${data[13]}',fk_personal='${data[14]}',fk_extensiones='${data[15]}' where id_empleado='${data[0]}'`) 
                 resolve({message:"actualizacion exitosa"})
         })
      }
@@ -391,8 +395,57 @@ const getTablaDataEmpleadoUser = ( data)  => {
             resolve({message:"actualizacion exitosa"})
             })
         }
+    const insertCatExtensiones =  data=> { 
+        // console.log( "data1=",data[1],"data0=",data[0])
+        return new Promise((resolve,reject) =>{ 
+        //  console.log(' esta es la query',`select * from productoServicio where fk_empresa='${data[9]}' and concepto='${data[1]}'`)
+        //  select * from productoServicio where fk_empresa='${data[9]}' and concepto='${data[1]}'  or  consecutivo='${data[3]}'
+        client.query(`select * from catextensiones where numExtension='${data[0]}'`,
+        function(err,results,field){
+        var string = JSON.stringify(results)
+        var resultados=JSON.parse(string);
+        if (resultados[0]){
+            resolve({message:"El numero de Extension ya fue registrado"})
+            //   console.log("resolve",resultados[0])   
+        }else{   
+        //       console.log("insert into productoServicio(tipo,concepto,precio,consecutivo,tipoLicenciamiento,LineaProducto,id_actualizacion,asignacion,fechaRegistro,fk_empresa",data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9])                         
+            client.query(`insert into catextensiones(numExtension,statusExtension) values('${data[0]}','libre')`) 
+            resolve({message:"registro exitoso"})
+            }        
+    })
+    })
+    }
+    const updateExtensiones = ( data)  => {
+        // console.log("updateExtensiones",data)
+        return new Promise((resolve,reject)=>{
+            client.query(`update catextensiones set statusExtension ='${data[1]}' where id_extension='${data[0]}'`) 
+            // resolve({message:"actualizacion exitosa"})
+            })
+    }
+    const getTablaCatExtensionesLibres = ( data)  => {
+        return new Promise((resolve,reject)=>{
+            client.query(`SELECT * FROM catextensiones where statusExtension='libre' `,function(err,result,field){
+                var string = JSON.stringify(result)
+                var resultados =  JSON.parse(string)
+                resolve(resultados)
+            }) 
+        })
+    }
+    const getTablaCatExtensiones = ( data)  => {
+        return new Promise((resolve,reject)=>{
+            client.query(`SELECT * FROM catextensiones `,function(err,result,field){
+                var string = JSON.stringify(result)
+                var resultados =  JSON.parse(string)
+                resolve(resultados)
+            }) 
+        })
+    }
 
 module.exports={ 
+    getTablaCatExtensionesLibres,
+    getTablaCatExtensiones,
+    insertCatExtensiones,
+    updateExtensiones,
     getTablaFechaNotificaciones,
     updatefechasNotificaciones,
     getTablalistaNivel,

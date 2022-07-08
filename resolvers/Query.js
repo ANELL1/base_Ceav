@@ -88,9 +88,23 @@ const getTablaFechaNotificaciones =  (_ , data) =>{
     var variable = cadena.split(",")
 return actions.getTablaFechaNotificaciones(variable)
 }
+const getTablaCatExtensionesLibres =  (_ , data) =>{
+    // console.log("insertCatExtensiones ",data)
+    var cadena= data.data[0]
+    var variable = cadena.split(",")
+return actions.getTablaCatExtensionesLibres(variable)
+}
+const getTablaCatExtensiones =  (_ , data) =>{
+    // console.log("insertCatExtensiones ",data)
+    var cadena= data.data[0]
+    var variable = cadena.split(",")
+return actions.getTablaCatExtensiones(variable)
+}
 
 
 module.exports={ 
+    getTablaCatExtensiones,
+    getTablaCatExtensionesLibres,
     getTablaFechaNotificaciones,
     getTablalistaNivel,
     getTablaDataEmpleadoUser,

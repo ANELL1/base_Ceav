@@ -12,7 +12,7 @@ const actions = require('../actions/userActions')
         var variable = cadena.split(",")
         return actions.updatePasswordEmpleados(variable)    
     }
-    const updateEmpleados = (_,data)=>{
+    const updateEmpleados = (_,data)=>{       
         var cadena = data.data[0]
         var variable = cadena.split(",")
         return actions.updateEmpleados(variable)
@@ -92,8 +92,16 @@ const actions = require('../actions/userActions')
         var variable = cadena.split(",")
     return actions.updatefechasNotificaciones(variable)
     }
+    const updateExtensiones =  (_ , data) =>{
+        // console.log("updateExtensiones mutation",data)
+        var cadena= data.data[0]
+        var variable = cadena.split(",")
+    return actions.updateExtensiones(variable)
+    }
+
 
 module.exports={
+    updateExtensiones,
     updatefechasNotificaciones,
     updateNivel,
     signupDataFechanotificaciones,

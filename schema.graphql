@@ -1,46 +1,6 @@
 scalar Upload
 
 type Mutation {
-     signupAlfa(data:[String]!):signupAlfa
-     signupEmpresas(data:[String]!):signupEmpresas
-     insertCotizaciones(data:[String]!):insertCotizaciones
-     insertClientes(data:[String]!):insertClientes
-     deleteCliente(data:[String]!):deleteCliente
-    #  updateCliente(data:[String]!):updateCliente    
-     insertContacto(data:[String]!):insertContacto
-     insertProductoServicio(data:[String]!):insertProductoServicio 
-     insertClientesAlfa(data:[String]!):insertClientesAlfa
-     sendEmailCotizacion(data:[String]!):message
-     insertTotales(data:[String]!):message
-     updateStatusCotizacion(data:[String]!):message
-     updateContacto(data:[String]!):updateContacto
-     deliteContacto(data:[String]!):deliteContacto
-     cotizacionVencida(data:[String]!):message
-     accesoSistema(data:[String]!):message
-     transactionClientes(data:[String]!):message
-     updatePasswordCliente(data:[String]!):message
-     quitarAccesoSistema(data:[String]!):message
-     registerSupport(data:[String]!):message
-     insertURLVideos(data:[String]!):insertURLVideos
-    #  insertVenta(data:[String]!):insertVenta
-     ventas(data:[String]!):ventas
-     insertTotalesVenta(data:[String]!):insertTotalesVenta
-     registerPoliza(data:[String]!):message
-     activarPoliza(data:[String]!):[message]
-     editarPoliza(data:[String]!):[message]
-    #  polizaVencida(data:[String]!):message
-     updateInsertProductoServicio(data:[String]!):updateInsertProductoServicio
-     updateCliente(data:[String]!):updateCliente
-     polizaVencida(data:[String]!):polizas
-     registerCupones(data:[String]!):message
-     updateCupones(data:[String]!):message
-     deleteCupones(data:[String]!):message
-     registerSolictudCotizacion(data:[String]!):message
-     sendMailSolicitudCotizacion(data:[String]!):message
-     cancelSolicitud(data:[String]!):message
-     
-
-    #  *******************
     sigUpEmpleado(data:[String]!):sigUpEmpleado
     updatePasswordEmpleados(data:[String]!):message
     updateEmpleados(data:[String]!):updateEmpleados
@@ -59,48 +19,11 @@ type Mutation {
     signupDataFechanotificaciones(data:[String]!):signupDataFechanotificaciones
     updateNivel(data:[String]!):sigupCatNiveles
     updatefechasNotificaciones(data:[String]!):updatefechasNotificaciones
+    updateExtensiones(data:[String]!):insertCatExtensiones
+    insertCatExtensiones(data:[String]!):insertCatExtensiones
     }
 
 type Query{
-loginAdminAlfa(data:[String]!):loginAdminAlfa
-loginEmpresas(data:[String]!):loginEmpresas
-getTablaClientes(data:[String]!):[getTablaClientes]
-# getEmpresa(data:[String]!):[getEmpresa]
-getEmpresas(data:[String]!):[getEmpresas]
-getCotizacionesTabla(data:[String]!):[getCotizacionesTabla]
-getIdCotizacion(data:[String]!):[getCotizacionesTabla]
-getClienteRFC(data:[String]!):[getClienteRFC]
-getTablaProductoServicio(data:[String]!):[getTablaProductoServicio]
-getProductoServicio(data:[String]!):[getProductoServicio]
-getTablaClientesAlfa(data:[String]!):[getTablaClientesAlfa]
-getIdClientesAlfa(data:[String]!):[getIdClientesAlfa]
-getProductoServicioByFolio(data:[String]!):[getProductoServicio]
-getTotalesByFolio(data:[String]!):[totales]
-getClienteId(data:[String]!):[getTablaClientes]
-getTablaContactos(data:[String]!):[getTablaContactos]
-getContactosId(data:[String]!):[getContactosId]
-getCotizacionFk_Contactos(data:[String]!):[getContactosId]
-getClienteByCorreo(data:[String]!):[getTablaClientesAlfa]
-loginClientes(data:[String]!):getTablaClientesAlfa
-getCotizacionByFolio(data:[String]!):[getCotizacionByFolio]
-getAdminAlfa(data:[String]!):[loginAdminAlfa]
-getURLVideos(data:[String]!):[getURLVideos]
-getPolizas(data:[String]!):[polizas]
-getPoliza(data:[String]!):[polizas]
-getTableInicioSesion(data:[String]!):[transaccionesClientes]
-getVentasTabla(data:[String]!):[getIdVenta]
-getIdVenta(data:[String]!):[getIdVenta]
-getTotalesByFolioVenta(data:[String]!):[getTotalesByFolioVenta]
-getProductoServicioByFolioVentas(data:[String]!):[getProductoServicioByFolioVentas]
-getVentasTablaIndicadores(data:[String]!):[ventas]
-getMaxProductoServicio(data:[String]!):[getMaxProductoServicio]
-getProductoServicioActualizado(data:[String]!):[getTablaProductoServicio]
-getCotizacionesFolio(data:[String]!):[getCotizacionesFolio]
-getAllTablaProductoServicio(data:[String]!):[getTablaProductoServicio]
-getCupones(data:[String]!):[cupones]
-getSolicitudes(data:[String]!):[solicitudes]
-getSolicitudesByFkEmpresa(data:[String]!):[solicitudes]
-# ****************
 getTablaDataEmpleado(data:[String]!):[getTablaDataEmpleado]
 getEmpleadosByCorreo(data:[String]!):[getTablaDataEmpleado]
 loginEmpleado(data:[String]!):loginEmpleado
@@ -118,7 +41,24 @@ getTablaEstados(data:[String]!):[getTablaEstados]
 getTablaDataEmpleadoUser(data:[String]!):[getTablaDataEmpleadoUser]
 getTablalistaNivel(data:[String]!):[getTablalistaNivel]
 getTablaFechaNotificaciones(data:[String]!):[getTablaFechaNotificaciones]
-} 
+getTablaCatExtensionesLibres(data:[String]!):[insertCatExtensiones]
+getTablaCatExtensiones(data:[String]!):[insertCatExtensiones]
+}
+
+type insertCatExtensiones{
+    id_extension:String,
+    numExtension:String,
+    statusExtension:String,
+    message:String
+}
+
+# type updateExtensiones{
+#     id_extension:String,
+#     numExtension:String,
+#     numEmpleado:String,
+#     statusExtension:String
+#     message:String
+# }
  type updatefechasNotificaciones{
     id_fecha:String,
     fechaAlta:String,
@@ -187,7 +127,6 @@ type updateEmpleados{
     correo:String,
     numEmpleado:String,
     telefono:String,
-    ext:String,
     statusEmpleado:String,
     departamento:String,
     fk_oficinas:String,
@@ -195,6 +134,7 @@ type updateEmpleados{
     fk_puesto:String,
     fk_nivel:String,
     fk_personal:String,
+    fk_extensiones:String,
     message:String
 
 }
@@ -422,7 +362,11 @@ type loginEmpleado{
     fk_puesto:String,
     fk_nivel:String,
     fk_personal:String,
+    fk_extensiones:String
     id_oficina:String,
+    id_extension:String,
+    numExtension:String,
+    statusExtension:String,
     message:String, 
 
 
